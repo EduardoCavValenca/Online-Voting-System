@@ -1,14 +1,33 @@
 from xmlrpc.server import SimpleXMLRPCServer
 import json
 import re
+import os
 
 # Set server configurations
 server = SimpleXMLRPCServer(('localhost', 3333), logRequests=True)
 
 # Open json with data
-with open('Votes/data.json') as file:
-    data = json.load(file)
-    file.close()
+try:
+    with open('Votes/data.json') as file:
+        data = json.load(file)
+        file.close()
+except FileNotFoundError:
+    os.mkdir('Votes')
+    with open('Votes/data.json', 'w') as file:
+        data = {"candidates": 
+                [
+                    {"name": "Alessandro", "votes": 0}, 
+                    {"name": "Bruno", "votes": 0}, 
+                    {"name": "Che", "votes": 0}, 
+                    {"name": "Eduardo", "votes": 0}, 
+                    {"name": "Nulo", "votes": 0}, 
+                    {"name": "Branco", "votes": 0}
+                ], 
+                "voters": []
+                }
+        json.dump(data, file)
+        file.close()
+
 
 # Procedures
 def getCandidates():

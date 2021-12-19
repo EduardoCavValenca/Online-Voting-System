@@ -129,4 +129,5 @@ dmypy.json
 .pyre/
 
 # Ignore the voting count
-data.json
+Votes/data.json
+*.json
