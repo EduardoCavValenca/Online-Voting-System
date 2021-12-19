@@ -2,7 +2,7 @@ from xmlrpc.server import SimpleXMLRPCServer
 import json
 
 # Set server configurations
-server = SimpleXMLRPCServer(('localhost', 3001), logRequests=True)
+server = SimpleXMLRPCServer(('localhost', 3000), logRequests=True)
 
 # Open json with data
 with open('./data.json') as file:
