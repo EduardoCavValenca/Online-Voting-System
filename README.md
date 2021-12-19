@@ -18,7 +18,10 @@ Eduardo Cavalari Valença - NUSP: 11234381
 
 # Execute
 To run the application, first run the server:
+
     python3 src/server.py
 
+
 And after that the application:
+
     python3 src/client.py
