@@ -15,3 +15,10 @@ Eduardo Cavalari Valença - NUSP: 11234381
     sudo apt-get install python3 python3-pip python3-tk python3-pil python3-pil.imagetk
     
     pip3 install playsound
+
+# Execute
+To run the application, first run the server:
+    python3 src/server.py
+
+And after that the application:
+    python3 src/client.py
