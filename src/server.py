@@ -1,5 +1,6 @@
 from xmlrpc.server import SimpleXMLRPCServer
 import json
+import re
 
 # Set server configurations
 server = SimpleXMLRPCServer(('localhost', 3333), logRequests=True)
@@ -17,19 +18,23 @@ def getCandidates():
 
     return names
 
-def vote(voterCPF, candidate):
+def vote(voterID, candidate):
+    # Verify if it is a valid ID
+    if re.search("^[0-9]{11}$", voterID) == None:
+        return "Invalid ID"
+
     # Verify if voter exits
     voterIndex = 0
     voterExists = False
     for voter in data["voters"]:
-        if(voter["CPF"] == voterCPF):       
+        if(voter["ID"] == voterID):       
             voterExists = True
             break    
         voterIndex += 1
     
     # If voter does not exists, then register in database
     if voterExists == False:
-        data["voters"].append({"CPF": voterCPF, "didVote": False})
+        data["voters"].append({"ID": voterID, "didVote": False})
     else:
         # If voter exists, does not allow him to vote twice
         if(data["voters"][voterIndex]["didVote"] == True):
