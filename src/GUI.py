@@ -61,19 +61,12 @@ caixaCPF = Text(screen, height=1, width=11, font=('Arial',20), padx=10, pady=12)
 caixaCPF.grid(row=2, column=1, padx=0, pady=0, sticky="ew")
 caixaCPF.place(x = 50, y = 497)
 
-#textCPF = Text(screen, width = 5, height = 1)
-#textCPF.insert((100, 450), "CPF:")
-#cpfCanvas = Canvas(screen, width=300, height=200, border=0)
-#cpfCanvas.grid(row=2, column=1, padx=0, pady=0)
-#cpfCanvas.place(x=100, y=450)
-#cpfCanvas.create_text(50, 500, text="CPF: ", fill="white", font=('Arial',24))
-
 # Botao de confirma
 def confirmVote():
     str = proxy.vote(caixaCPF.get("1.0","end-1c"), dropdownDefault.get())
     print(str)
-    #if(str == 'Vote added'):
-    #    playsound('SoundEffects/SomUrna.mp3')
+    if(str == 'Vote added'):
+        playsound('SoundEffects/SomUrna.mp3')
 
 confirm = Button(screen, text = 'Confirma', command = confirmVote, width=16, height=3, fg='white', border=5, padx = 0, pady = 0, justify = "right", bg= '#1E8449', activebackground='#58D68D', font=('Arial',18))
 confirm.grid(row=2, column=2, padx= 10, pady=10)
