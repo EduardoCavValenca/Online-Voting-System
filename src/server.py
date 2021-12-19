@@ -2,10 +2,10 @@ from xmlrpc.server import SimpleXMLRPCServer
 import json
 
 # Set server configurations
-server = SimpleXMLRPCServer(('localhost', 3000), logRequests=True)
+server = SimpleXMLRPCServer(('localhost', 3333), logRequests=True)
 
 # Open json with data
-with open('./data.json') as file:
+with open('Votes/data.json') as file:
     data = json.load(file)
     file.close()
 
@@ -51,7 +51,7 @@ def vote(voterCPF, candidate):
 
     # Updating json
     if candidateExists == True or voterExists == False:
-        with open('./data.json', 'w') as file:
+        with open('Votes/data.json', 'w') as file:
             json.dump(data, file)
         file.close()
     
@@ -67,7 +67,7 @@ server.register_function(vote)
 
 if __name__ == '__main__':
     try:
-        print('[SERVER] Listening on port 3000...')
+        print('[SERVER] Listening on port 3333...')
         server.serve_forever()
     except KeyboardInterrupt:
         print('[SERVER] Exiting...')
