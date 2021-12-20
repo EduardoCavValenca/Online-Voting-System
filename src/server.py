@@ -37,6 +37,12 @@ def getCandidates():
 
     return names
 
+def getResult():
+    result = []
+    for cand in data["candidates"]:
+        result.append(cand)
+    return result
+
 def vote(voterID, candidate):
     # Verify if it is a valid ID
     if re.search("^[0-9]{11}$", voterID) == None:
@@ -87,6 +93,7 @@ def vote(voterID, candidate):
 
 # Register procedures
 server.register_function(getCandidates)
+server.register_function(getResult)
 server.register_function(vote)
 
 if __name__ == '__main__':

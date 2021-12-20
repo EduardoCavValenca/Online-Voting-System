@@ -73,5 +73,15 @@ confirm = Button(screen, text = 'Confirm', command = confirmVote, width=16, heig
 confirm.grid(row=2, column=2, padx= 10, pady=10)
 confirm.place(x=screenResX*3/5, y=screenResY*4/5)
 
+def on_closing():
+    result = proxy.getResult()
+    resultStr = ""
+    for candidate in result:
+        resultStr += candidate['name'] + ":        \t" + str(candidate['votes']) + '\n'
+    showinfo("Resultado", resultStr)
+    screen.destroy()
+
+screen.protocol("WM_DELETE_WINDOW", on_closing)
+
 # run
 screen.mainloop()
